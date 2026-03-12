@@ -1,1 +1,826 @@
-<h1>trek travel zone</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TTZ – Trek Travel Zone | Camping Equipment Rentals</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet"/>
+  <style>
+    /* ═══════════════════════════════════════════════════════
+       COLOR SCHEMA — Forest · Sky · Amber
+       Primary:  deep forest green   #1B4332
+       Accent 1: cerulean blue       #2176AE
+       Accent 2: warm amber          #E8A320
+       Mid:      sage green          #52796F
+       Light:    pale mint white     #F0F7F4
+       Pale sky: soft blue-white     #EBF4FA
+       Pale amb: light amber wash    #FDF3DC
+       Neutral:  slate grey-green    #6B7F78
+       Sec dark: medium forest       #2D6A4F  (no heavy blacks)
+    ═══════════════════════════════════════════════════════ */
+    :root {
+      --espresso:  #1B4332;   /* deep forest green — main dark */
+      --char:      #2D6A4F;   /* medium forest — replaces near-black */
+      --orange:    #2176AE;   /* cerulean blue — primary CTA */
+      --orange-dk: #155E8A;   /* darker blue — hover */
+      --orange-lt: #EBF4FA;   /* pale sky wash — light bg tint */
+      --ochre:     #E8A320;   /* warm amber — accent pop */
+      --olive:     #52796F;   /* sage green — mid labels */
+      --stone:     #6B7F78;   /* slate grey-green — body text */
+      --ivory:     #F0F7F4;   /* pale mint-white — main bg */
+      --parch:     #FDF3DC;   /* soft amber wash — warm section */
+      --white:     #FFFFFF;
+      --rust-pale: #EBF4FA;   /* pale sky bg */
+      --sky:       #2176AE;   /* cerulean */
+      --sky-lt:    #C2E0F4;   /* pale sky tint */
+      --navbar-h:  80px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--ivory);
+      color: var(--espresso);
+      overflow-x: hidden;
+    }
+    h1,h2,h3,h4 { font-family: 'Playfair Display', serif; }
+
+    /* ═══════════════════════════════════
+       NAVBAR
+    ═══════════════════════════════════ */
+    nav.navbar {
+      padding: 1.2rem 2.5rem;
+      background: transparent;
+      position: fixed;
+      width: 100%; z-index: 100;
+      height: var(--navbar-h);
+      transition: background .3s, box-shadow .3s;
+    }
+    nav.navbar.scrolled {
+      background: rgba(27,67,50,.96);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 4px 24px rgba(0,0,0,.2);
+    }
+    nav.navbar.scrolled .nav-link       { color: var(--parch) !important; }
+    nav.navbar.scrolled .nav-link:hover { color: var(--orange) !important; }
+    nav.navbar.scrolled .brand-bold     { color: var(--ivory); }
+    nav.navbar.scrolled .tagline        { color: var(--sky-lt); }
+
+    .navbar-brand .brand-thin { font-weight:300; font-size:1.25rem; letter-spacing:1px; color:var(--orange); }
+    .navbar-brand .brand-bold { font-weight:700; font-size:1.25rem; color:var(--espresso); transition:color .3s; }
+    .navbar-brand .tagline    { font-size:.65rem; letter-spacing:2px; color:var(--stone); display:block; text-transform:uppercase; transition:color .3s; }
+
+    .nav-link {
+      font-size:.78rem; font-weight:500; letter-spacing:1.5px;
+      text-transform:uppercase; color:var(--espresso) !important;
+      padding:0 1rem !important; transition:color .2s;
+    }
+    .nav-link:hover, .nav-link.active-link { color:var(--orange) !important; }
+
+    /* ═══════════════════════════════════
+       HERO
+    ═══════════════════════════════════ */
+    #home {
+      min-height: 100vh;
+      position: relative;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background: var(--ivory);
+    }
+
+    .hero-text {
+      position: relative; z-index: 10;
+      padding-left: 6vw; max-width: 520px;
+      animation: fadeUp .9s ease both;
+    }
+    @keyframes fadeUp {
+      from { opacity:0; transform:translateY(30px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+
+    .eyebrow {
+      font-size:.72rem; letter-spacing:3px; text-transform:uppercase;
+      color:var(--olive); margin-bottom:.9rem;
+      display:flex; align-items:center; gap:.6rem;
+    }
+    .eyebrow::before { content:''; display:inline-block; width:28px; height:2px; background:var(--olive); flex-shrink:0; }
+
+    .hero-text h1 {
+      font-family:'Playfair Display',serif;
+      font-size:clamp(2.2rem,4vw,3.4rem);
+      line-height:1.15; color:var(--espresso); margin-bottom:1.2rem;
+    }
+    .hero-text h1 em { font-style:italic; color:var(--orange); }
+    .hero-text > p {
+      font-size:1rem; color:var(--stone);
+      line-height:1.75; margin-bottom:1.6rem; max-width:400px;
+    }
+
+    .hero-badges { display:flex; gap:.6rem; flex-wrap:wrap; margin-bottom:2rem; }
+    .hero-badge {
+      background:var(--espresso); color:var(--ivory);
+      font-size:.62rem; font-weight:600; letter-spacing:1.5px;
+      text-transform:uppercase; padding:.32rem .85rem; border-radius:50px;
+      display:flex; align-items:center; gap:.35rem;
+    }
+    .hero-badge i { color:var(--ochre); font-size:.72rem; }
+
+    .btn-go {
+      display:inline-flex; align-items:center; gap:.5rem;
+      background:var(--orange); color:var(--white);
+      font-size:.78rem; font-weight:600; letter-spacing:2px; text-transform:uppercase;
+      padding:.9rem 2.5rem; border-radius:50px; text-decoration:none;
+      transition:background .25s, transform .2s, box-shadow .2s;
+      box-shadow:0 8px 28px rgba(33,118,174,.35);
+    }
+    .btn-go:hover { background:var(--orange-dk); transform:translateY(-3px); box-shadow:0 14px 32px rgba(33,118,174,.4); color:var(--white); }
+
+    .btn-outline-go {
+      display:inline-flex; align-items:center; gap:.5rem;
+      border:2px solid var(--espresso); color:var(--espresso);
+      font-size:.78rem; font-weight:600; letter-spacing:2px; text-transform:uppercase;
+      padding:.85rem 2rem; border-radius:50px; text-decoration:none;
+      transition:all .25s;
+    }
+    .btn-outline-go:hover { background:var(--espresso); color:var(--white); }
+
+    .scroll-hint {
+      position:absolute; bottom:2rem; left:6vw; z-index:11;
+      display:flex; align-items:center; gap:.6rem;
+      font-size:.68rem; letter-spacing:2.5px; text-transform:uppercase; color:var(--stone);
+    }
+    .scroll-hint .line { width:36px; height:1px; background:var(--stone); animation:pulse 2s ease infinite; }
+    @keyframes pulse { 0%,100%{width:36px;opacity:.6} 50%{width:56px;opacity:1} }
+
+    /* hero svg shapes — orange/ochre/warm palette */
+    /* outermost: sky-lt #C8DFEE  middle: orange-lt #F5DDD0  inner bg: parch */
+
+    /* ═══════════════════════════════════
+       SHARED UTILITIES
+    ═══════════════════════════════════ */
+    .sec-pad { padding: 96px 0; }
+    .sec-label {
+      font-family:'DM Sans',sans-serif; font-size:.65rem; font-weight:600;
+      letter-spacing:4px; text-transform:uppercase; margin-bottom:.6rem;
+      display:flex; align-items:center; gap:.5rem;
+    }
+    .sec-label::before { content:''; width:20px; height:2px; background:currentColor; flex-shrink:0; }
+    .sec-title { font-family:'Playfair Display',serif; font-weight:700; line-height:1.15; font-size:clamp(1.8rem,3.2vw,2.6rem); }
+    .divider-line { width:48px; height:3px; border-radius:2px; margin:1.2rem 0; }
+
+    /* ═══════════════════════════════════
+       ABOUT  — ivory
+    ═══════════════════════════════════ */
+    #about { background: var(--ivory); }
+
+    .about-img-box {
+      position:relative; border-radius:12px; overflow:hidden;
+      height:480px; background:var(--orange-lt);
+      display:flex; align-items:center; justify-content:center;
+    }
+    .about-img-box img { width:100%; height:100%; object-fit:cover; position:absolute; inset:0; }
+    .about-img-box .ph { font-size:5rem; color:var(--orange); opacity:.3; }
+    .about-badge {
+      position:absolute; bottom:24px; left:24px;
+      background:var(--espresso); color:var(--white);
+      font-family:'Playfair Display',serif; font-size:1rem; font-weight:700;
+      padding:.65rem 1.3rem; border-radius:6px;
+      border-left:4px solid var(--orange);
+    }
+    .about-stats { display:flex; gap:2rem; margin-top:2.4rem; flex-wrap:wrap; }
+    .astat .n { font-family:'Playfair Display',serif; font-size:2rem; font-weight:700; color:var(--orange); line-height:1; }
+    .astat .l { font-size:.68rem; letter-spacing:2px; text-transform:uppercase; color:var(--stone); margin-top:.2rem; }
+
+    /* ═══════════════════════════════════
+       PRODUCTS  — espresso dark
+    ═══════════════════════════════════ */
+    #products { background: var(--char); }
+    #products .sec-label { color:var(--sky-lt); }
+    #products .sec-title { color:var(--white); }
+    #products .sec-sub   { color:var(--orange-lt); opacity:.8; font-size:.95rem; margin-top:.7rem; line-height:1.7; }
+
+    .product-card {
+      background: rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:12px; padding:1.8rem; height:100%;
+      transition:transform .25s, background .25s, box-shadow .25s;
+    }
+    .product-card:hover {
+      transform:translateY(-6px);
+      background:rgba(33,118,174,.18);
+      box-shadow:0 20px 48px rgba(0,0,0,.25);
+      border-color:rgba(33,118,174,.4);
+    }
+    .product-icon {
+      width:52px; height:52px; border-radius:10px;
+      background:rgba(232,163,32,.2);
+      display:flex; align-items:center; justify-content:center; margin-bottom:1.3rem;
+    }
+    .product-icon i { font-size:1.4rem; color:var(--ochre); }
+    .product-card h4 { font-family:'Playfair Display',serif; font-size:1.1rem; color:var(--white); margin-bottom:.55rem; }
+    .product-card p  { font-size:.87rem; color:var(--orange-lt); line-height:1.7; opacity:.85; margin-bottom:1.1rem; }
+    .product-tags { display:flex; flex-wrap:wrap; gap:.35rem; }
+    .ptag {
+      font-size:.58rem; font-weight:600; letter-spacing:1.5px; text-transform:uppercase;
+      padding:.22rem .6rem; border-radius:3px;
+      background:rgba(255,255,255,.07); color:var(--sky-lt);
+      border:1px solid rgba(200,223,238,.2);
+    }
+
+    /* ═══════════════════════════════════
+       HOW IT WORKS  — parchment
+    ═══════════════════════════════════ */
+    #how { background: var(--parch); }
+    #how .sec-label { color:var(--olive); }
+    #how .sec-title { color:var(--espresso); }
+
+    .step-card { text-align:center; }
+    .step-num {
+      width:68px; height:68px; border-radius:50%;
+      background:var(--espresso); color:var(--ochre);
+      font-family:'Playfair Display',serif; font-size:1.5rem; font-weight:700;
+      display:flex; align-items:center; justify-content:center;
+      margin:0 auto 1.1rem;
+      box-shadow:0 8px 24px rgba(44,26,14,.2);
+    }
+    .step-card h4 { font-family:'Playfair Display',serif; font-size:1rem; color:var(--espresso); margin-bottom:.45rem; }
+    .step-card p  { font-size:.87rem; color:var(--stone); line-height:1.7; }
+    .step-connector {
+      display:none; position:absolute; top:34px;
+      left:calc(50% + 40px); right:calc(-50% + 40px);
+      height:1px; background:var(--orange); opacity:.3;
+    }
+    @media(min-width:992px){ .step-connector { display:block; } }
+
+    /* ═══════════════════════════════════
+       GALLERY  — white
+    ═══════════════════════════════════ */
+    #gallery { background: var(--white); }
+    #gallery .sec-label { color:var(--orange); }
+    #gallery .sec-title { color:var(--espresso); }
+
+    .gallery-grid {
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      grid-template-rows:220px 220px;
+      gap:10px; margin-top:2.5rem;
+    }
+    .g-item { border-radius:10px; overflow:hidden; position:relative; }
+    .g-item:first-child { grid-row:1/3; }
+    .g-bg { position:absolute; inset:0; }
+    .g-item:nth-child(1) .g-bg { background:#1B4332; }   /* forest */
+    .g-item:nth-child(2) .g-bg { background:#2176AE; }   /* cerulean */
+    .g-item:nth-child(3) .g-bg { background:#52796F; }   /* sage */
+    .g-item:nth-child(4) .g-bg { background:#155E8A; }   /* deep blue */
+    .g-item:nth-child(5) .g-bg { background:#E8A320; }   /* amber */
+    .g-overlay {
+      position:absolute; inset:0;
+      background:rgba(44,26,14,0); transition:background .3s;
+      display:flex; align-items:center; justify-content:center;
+    }
+    .g-item:hover .g-overlay { background:rgba(27,67,50,.42); }
+    .g-overlay i { font-size:2rem; color:var(--white); opacity:0; transition:opacity .3s; }
+    .g-item:hover .g-overlay i { opacity:1; }
+    .g-label {
+      position:absolute; bottom:0; left:0; right:0;
+      padding:.9rem 1.1rem;
+      background:linear-gradient(transparent, rgba(27,67,50,.8));
+      color:var(--white); font-size:.7rem; font-weight:600; letter-spacing:1.5px; text-transform:uppercase;
+    }
+
+    /* ═══════════════════════════════════
+       TESTIMONIALS  — charcoal dark
+    ═══════════════════════════════════ */
+    #testimonials { background: var(--espresso); }
+    #testimonials .sec-label { color:var(--sky-lt); }
+    #testimonials .sec-title { color:var(--white); }
+
+    .testi-card {
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.07);
+      border-radius:12px; padding:1.8rem; height:100%;
+      transition:background .25s, transform .25s;
+    }
+    .testi-card:hover {
+      background:rgba(33,118,174,.12);
+      transform:translateY(-4px);
+      border-color:rgba(33,118,174,.35);
+    }
+    .testi-stars { color:var(--ochre); font-size:.82rem; margin-bottom:1rem; letter-spacing:2px; }
+    .testi-quote {
+      font-family:'Playfair Display',serif; font-style:italic;
+      font-size:1rem; line-height:1.7; color:var(--sky-lt);
+      margin-bottom:1.4rem;
+    }
+    .testi-person { display:flex; align-items:center; gap:.85rem; }
+    .testi-avatar {
+      width:40px; height:40px; border-radius:50%;
+      background:var(--orange-dk); display:flex; align-items:center;
+      justify-content:center; font-family:'Playfair Display',serif;
+      font-size:.95rem; font-weight:700; color:var(--white); flex-shrink:0;
+    }
+    .testi-name { font-size:.84rem; font-weight:600; color:var(--white); }
+    .testi-trip { font-size:.7rem; color:var(--ochre); letter-spacing:.5px; margin-top:.1rem; }
+
+    /* ═══════════════════════════════════
+       CONTACT  — ivory
+    ═══════════════════════════════════ */
+    #contact { background: var(--ivory); }
+    #contact .sec-label { color:var(--olive); }
+    #contact .sec-title { color:var(--espresso); }
+
+    .contact-item { display:flex; align-items:flex-start; gap:1rem; margin-bottom:1.8rem; }
+    .contact-icon {
+      width:46px; height:46px; border-radius:8px; flex-shrink:0;
+      background:var(--espresso); color:var(--ochre);
+      display:flex; align-items:center; justify-content:center; font-size:1.05rem;
+    }
+    .contact-item h5 { font-family:'DM Sans',sans-serif; font-size:.62rem; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:var(--stone); margin-bottom:.25rem; }
+    .contact-item p, .contact-item a { font-size:.93rem; color:var(--espresso); text-decoration:none; line-height:1.65; }
+    .contact-item a:hover { color:var(--orange); }
+
+    .map-box { border-radius:12px; overflow:hidden; border:3px solid var(--orange-lt); height:400px; }
+    .map-box iframe { width:100%; height:100%; border:none; }
+
+    /* ═══════════════════════════════════
+       FOOTER  — espresso
+    ═══════════════════════════════════ */
+    footer { background:var(--espresso); color:var(--orange-lt); padding:3.5rem 0 2rem; }
+    .footer-logo { font-family:'Playfair Display',serif; font-size:1.8rem; font-weight:700; color:var(--orange); }
+    .footer-tagline { font-size:.62rem; letter-spacing:3px; text-transform:uppercase; color:var(--sky-lt); margin-top:.2rem; }
+    footer p { font-size:.83rem; line-height:1.8; }
+    .footer-links h6 { font-size:.6rem; font-weight:600; letter-spacing:3px; text-transform:uppercase; color:var(--ochre); margin-bottom:.9rem; }
+    .footer-links a { display:block; font-size:.82rem; color:var(--orange-lt); opacity:.65; text-decoration:none; margin-bottom:.45rem; transition:opacity .2s, color .2s; }
+    .footer-links a:hover { opacity:1; color:var(--orange); }
+    .footer-hr { border-color:rgba(255,255,255,.08); margin:2rem 0 1.5rem; }
+    .footer-copy { font-size:.72rem; color:var(--orange-lt); opacity:.4; }
+    .social-link { font-size:1.2rem; color:var(--orange-lt); opacity:.6; transition:opacity .2s, color .2s; }
+    .social-link:hover { opacity:1; color:var(--orange); }
+
+    /* ═══════════════════════════════════
+       RESPONSIVE
+    ═══════════════════════════════════ */
+    @media(max-width:991px){
+      #shapes-svg { opacity:.15; }
+      .hero-text { max-width:100%; padding:2rem; }
+      nav.navbar { padding:1rem 1.5rem; }
+      .gallery-grid { grid-template-columns:repeat(2,1fr); grid-template-rows:auto; }
+      .g-item:first-child { grid-row:auto; }
+    }
+    @media(max-width:576px){
+      .hero-text h1 { font-size:2rem; }
+      .gallery-grid { grid-template-columns:1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg">
+  <a class="navbar-brand" href="#home">
+    <span class="brand-thin">TREK</span><span class="brand-bold">TRAVELZONE</span>
+    <span class="tagline">Explore Beyond Boundaries</span>
+  </a>
+  <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse justify-content-end" id="navMenu">
+    <ul class="navbar-nav gap-1">
+      <li class="nav-item"><a class="nav-link active-link" href="#home">Home</a></li>
+      <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+      <li class="nav-item"><a class="nav-link" href="#products">Equipment</a></li>
+      <li class="nav-item"><a class="nav-link" href="#gallery">Gallery</a></li>
+      <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════
+     HERO — exact original structure
+     Shape colors swapped to warm palette:
+     outermost: sky-lt #C8DFEE
+     middle:    orange-lt #F5DDD0
+     inner bg:  parch #EDE5D4
+═══════════════════════════════════ -->
+<section id="home" style="min-height:100vh;position:relative;display:flex;align-items:center;overflow:hidden;background:var(--ivory);">
+
+  <svg id="shapes-svg"
+       xmlns="http://www.w3.org/2000/svg"
+       xmlns:xlink="http://www.w3.org/1999/xlink"
+       style="position:absolute;top:80px;right:0;width:68%;height:calc(100% - 80px + 30px);overflow:visible;z-index:1;"
+       viewBox="0 0 1581.72 1304.51"
+       preserveAspectRatio="xMaxYMax meet">
+    <defs>
+      <clipPath id="imgClip">
+        <path transform="translate(-1418.28,-405.11)"
+              d="M1515.5,1709.12a436.32,436.32,0,0,1-44-61.17c-16.65-28-41.72-70.12-50-129-9.31-66.23,7.64-117.93,15-139.53,6.82-20,30-85.67,90.43-138.1,18.4-16,44.62-34.51,79.65-59.28,33.12-23.42,43.1-29,58-43.74,16.65-16.49,32.79-37.87,49.91-75.2,29.14-63.54,21.9-91.33,40-142.39,13.71-38.68,38-107.33,101-152,55.85-39.59,126.5-49.23,193-58.3,22.49-3.07,50.35-5.61,92.9-15.18,45.7-10.27,68.55-15.41,93.1-28.78,43.53-23.71,71.85-56.4,92-80.27,18.64-22.08,18.27-26.36,37-46.83,0,0,29-31.73,67.49-58.11,85.25-58.49,190.63-71.37,203.51-72.82,76.16-8.58,133.33,3.57,202,18.16a927.37,927.37,0,0,1,163,50.65V1709.12Z"/>
+      </clipPath>
+    </defs>
+
+    <!-- Middle deco — pale mint green -->
+    <g transform="translate(900,700) scale(1.026) translate(-900,-700)">
+      <path transform="translate(-1418.28,-405.11) translate(-32,-18)"
+            fill="#C8E6D8"
+            d="M1515.5,1709.12a436.32,436.32,0,0,1-44-61.17c-16.65-28-41.72-70.12-50-129-9.31-66.23,7.64-117.93,15-139.53,6.82-20,30-85.67,90.43-138.1,18.4-16,44.62-34.51,79.65-59.28,33.12-23.42,43.1-29,58-43.74,16.65-16.49,32.79-37.87,49.91-75.2,29.14-63.54,21.9-91.33,40-142.39,13.71-38.68,38-107.33,101-152,55.85-39.59,126.5-49.23,193-58.3,22.49-3.07,50.35-5.61,92.9-15.18,45.7-10.27,68.55-15.41,93.1-28.78,43.53-23.71,71.85-56.4,92-80.27,18.64-22.08,18.27-26.36,37-46.83,0,0,29-31.73,67.49-58.11,85.25-58.49,190.63-71.37,203.51-72.82,76.16-8.58,133.33,3.57,202,18.16a927.37,927.37,0,0,1,163,50.65V1709.12Z"/>
+    </g>
+
+    <!-- Inner bg — soft amber wash -->
+    <path transform="translate(-1418.28,-405.11)" fill="#FDF3DC"
+          d="M1515.5,1709.12a436.32,436.32,0,0,1-44-61.17c-16.65-28-41.72-70.12-50-129-9.31-66.23,7.64-117.93,15-139.53,6.82-20,30-85.67,90.43-138.1,18.4-16,44.62-34.51,79.65-59.28,33.12-23.42,43.1-29,58-43.74,16.65-16.49,32.79-37.87,49.91-75.2,29.14-63.54,21.9-91.33,40-142.39,13.71-38.68,38-107.33,101-152,55.85-39.59,126.5-49.23,193-58.3,22.49-3.07,50.35-5.61,92.9-15.18,45.7-10.27,68.55-15.41,93.1-28.78,43.53-23.71,71.85-56.4,92-80.27,18.64-22.08,18.27-26.36,37-46.83,0,0,29-31.73,67.49-58.11,85.25-58.49,190.63-71.37,203.51-72.82,76.16-8.58,133.33,3.57,202,18.16a927.37,927.37,0,0,1,163,50.65V1709.12Z"/>
+
+    <!-- Photo -->
+    <image href="a.png" x="0" y="0" width="1581.72" height="1304.51"
+           preserveAspectRatio="xMidYMid slice" clip-path="url(#imgClip)"/>
+  </svg>
+
+  <div class="hero-text">
+    <p class="eyebrow">Gear Up For The Wild</p>
+    <h1>Rent. Trek.<br/><em>Conquer.</em></h1>
+    <p>TTZ brings premium camping gear to every adventurer — no purchase needed. Pick up your kit, hit the trail, return when done.</p>
+    <div class="hero-badges">
+      <span class="hero-badge"><i class="bi bi-house-door"></i> Tents & Shelters</span>
+      <span class="hero-badge"><i class="bi bi-briefcase"></i> Backpacks</span>
+      <span class="hero-badge"><i class="bi bi-snow2"></i> Cold Gear</span>
+      <span class="hero-badge"><i class="bi bi-lightning-charge"></i> Climbing Tools</span>
+    </div>
+    <div class="d-flex flex-wrap gap-3">
+      <a href="#products" class="btn-go">Browse Equipment</a>
+      <a href="#how" class="btn-outline-go">How It Works</a>
+    </div>
+  </div>
+
+  <div class="scroll-hint"><span class="line"></span> Scroll to explore</div>
+</section>
+<!-- ═══════════════════════════════════
+     HOW IT WORKS
+═══════════════════════════════════ -->
+<section id="how" class="sec-pad">
+  <div class="container">
+    <div class="text-center mb-5">
+      <p class="sec-label justify-content-center" style="color:var(--olive)">Simple Process</p>
+      <h2 class="sec-title" style="color:var(--espresso);">Gear in 4 easy steps</h2>
+    </div>
+    <div class="row g-4">
+      <div class="col-lg-3 col-md-6 position-relative">
+        <div class="step-connector"></div>
+        <div class="step-card">
+          <div class="step-num">01</div>
+          <h4>Browse Equipment</h4>
+          <p>Check our full gear list online or call us to confirm availability for your trek dates.</p>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 position-relative">
+        <div class="step-connector"></div>
+        <div class="step-card">
+          <div class="step-num">02</div>
+          <h4>Visit Our Store</h4>
+          <p>Walk in to our Kolkata store. Our team helps you pick the right gear for your route and season.</p>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 position-relative">
+        <div class="step-connector"></div>
+        <div class="step-card">
+          <div class="step-num">03</div>
+          <h4>Gear Up & Go</h4>
+          <p>Collect your kit, get a quick rundown from our team and head to the mountains fully equipped.</p>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <div class="step-card">
+          <div class="step-num">04</div>
+          <h4>Return & Repeat</h4>
+          <p>Come back after your adventure, return the gear — and start planning your next one!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════
+     ABOUT
+═══════════════════════════════════ -->
+<section id="about" class="sec-pad">
+  <div class="container">
+    <div class="row g-5 align-items-center">
+      <div class="col-lg-5">
+        <div class="about-img-box">
+          <i class="bi bi-image ph"></i>
+          <div class="about-badge">Est. 2018 · Kolkata</div>
+        </div>
+      </div>
+      <div class="col-lg-7">
+        <p class="sec-label" style="color:var(--orange)">Who We Are</p>
+        <h2 class="sec-title" style="color:var(--espresso);margin-bottom:.8rem;">
+          Your local outfitter<br/>for every expedition
+        </h2>
+        <div class="divider-line" style="background:var(--orange);"></div>
+        <p style="color:var(--stone);line-height:1.85;margin-bottom:1rem;">
+          Trek Travel Zone started with a simple belief — great gear shouldn't require a great purchase. We're a Kolkata-based equipment rental service for trekkers, campers, and mountain lovers who want quality without commitment.
+        </p>
+        <p style="color:var(--stone);line-height:1.85;margin-bottom:2rem;">
+          Whether you're heading to Sandakphu, Dzongri, or a weekend camp in the Dooars — our curated, well-maintained gear is ready for pickup. Just visit, collect, and go.
+        </p>
+        <div class="about-stats">
+          <div class="astat"><div class="n">500+</div><div class="l">Happy Trekkers</div></div>
+          <div style="width:1px;background:var(--orange-lt);align-self:stretch;"></div>
+          <div class="astat"><div class="n">6yr</div><div class="l">In Business</div></div>
+          <div style="width:1px;background:var(--orange-lt);align-self:stretch;"></div>
+          <div class="astat"><div class="n">20+</div><div class="l">Gear Types</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- 
+<!-- ═══════════════════════════════════
+     PRODUCTS
+═══════════════════════════════════ -->
+<!--<section id="products" class="sec-pad">
+  <div class="container">
+    <div class="row mb-5">
+      <div class="col-lg-7">
+        <p class="sec-label">What We Rent</p>
+        <h2 class="sec-title" style="color:var(--white);margin-bottom:.7rem;">Full kit. Zero hassle.</h2>
+        <p class="sec-sub">Premium equipment maintained to trail-ready standards — available for short and extended rental periods.</p>
+      </div>
+    </div>
+    <div class="row g-4">
+
+      <div class="col-md-6 col-lg-4">
+        <div class="product-card">
+          <div class="product-icon"><i class="bi bi-house-door"></i></div>
+          <h4>Camping Tents</h4>
+          <p>3-season and 4-season dome tents, tunnel tents and ultralight backpacking shelters for solo to group camps.</p>
+          <div class="product-tags">
+            <span class="ptag">2-person</span><span class="ptag">4-person</span>
+            <span class="ptag">Ultralight</span><span class="ptag">4-season</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <div class="product-card">
+          <div class="product-icon"><i class="bi bi-bag-heart"></i></div>
+          <h4>Sleeping Bags</h4>
+          <p>Mummy-style and rectangular sleeping bags rated from +5°C to -20°C, suitable for all Himalayan conditions.</p>
+          <div class="product-tags">
+            <span class="ptag">Summer</span><span class="ptag">Winter</span>
+            <span class="ptag">Down Fill</span><span class="ptag">Synthetic</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <div class="product-card">
+          <div class="product-icon"><i class="bi bi-briefcase"></i></div>
+          <h4>Backpacks</h4>
+          <p>Frame and frameless packs from 30L day packs to 70L expedition carriers with adjustable torso fit.</p>
+          <div class="product-tags">
+            <span class="ptag">30L</span><span class="ptag">50L</span>
+            <span class="ptag">70L</span><span class="ptag">Waterproof</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <div class="product-card">
+          <div class="product-icon"><i class="bi bi-snow3"></i></div>
+          <h4>Jackets & Thermals</h4>
+          <p>Down jackets, hardshell waterproofs, fleece mid-layers and base thermal sets for cold altitude conditions.</p>
+          <div class="product-tags">
+            <span class="ptag">Down Jacket</span><span class="ptag">Hardshell</span>
+            <span class="ptag">Fleece</span><span class="ptag">Thermal</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <div class="product-card">
+          <div class="product-icon"><i class="bi bi-lightning-charge"></i></div>
+          <h4>Climbing Gear</h4>
+          <p>Ice axes, crampons, harnesses, helmets, carabiners and belay devices for technical mountain terrain.</p>
+          <div class="product-tags">
+            <span class="ptag">Ice Axe</span><span class="ptag">Crampons</span>
+            <span class="ptag">Harness</span><span class="ptag">Helmet</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <div class="product-card">
+          <div class="product-icon"><i class="bi bi-tools"></i></div>
+          <h4>Accessories & More</h4>
+          <p>Trekking poles, headlamps, sleeping mats, gaiters, buff neck warmers and water filtration systems.</p>
+          <div class="product-tags">
+            <span class="ptag">Poles</span><span class="ptag">Headlamp</span>
+            <span class="ptag">Sleep Mat</span><span class="ptag">Gaiters</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>-->
+
+
+<!-- ═══════════════════════════════════
+     GALLERY
+═══════════════════════════════════ -->
+<!--<section id="gallery" class="sec-pad">
+  <div class="container">
+    <div class="row align-items-end mb-2">
+      <div class="col-lg-7">
+        <p class="sec-label" style="color:var(--orange)">In The Field</p>
+        <h2 class="sec-title" style="color:var(--espresso);">Our gear, your adventures</h2>
+      </div>
+      <div class="col-lg-5 text-lg-end mt-3 mt-lg-0">
+        <p style="font-size:.85rem;color:var(--stone);">Photos shared by our community of trekkers.</p>
+      </div>
+    </div>
+    <div class="gallery-grid">
+      <div class="g-item"><div class="g-bg"></div><div class="g-overlay"><i class="bi bi-zoom-in"></i></div><div class="g-label">Dzongri Trail</div></div>
+      <div class="g-item"><div class="g-bg"></div><div class="g-overlay"><i class="bi bi-zoom-in"></i></div><div class="g-label">Sandakphu Camp</div></div>
+      <div class="g-item"><div class="g-bg"></div><div class="g-overlay"><i class="bi bi-zoom-in"></i></div><div class="g-label">Dooars Jungle Stay</div></div>
+      <div class="g-item"><div class="g-bg"></div><div class="g-overlay"><i class="bi bi-zoom-in"></i></div><div class="g-label">High Altitude Bivouac</div></div>
+      <div class="g-item"><div class="g-bg"></div><div class="g-overlay"><i class="bi bi-zoom-in"></i></div><div class="g-label">Singalila Ridge</div></div>
+    </div>
+  </div>
+</section>-->
+
+<!-- ═══════════════════════════════════
+     TESTIMONIALS
+═══════════════════════════════════ -->
+<!--<section id="testimonials" class="sec-pad">
+  <div class="container">
+    <div class="text-center mb-5">
+      <p class="sec-label justify-content-center" style="color:var(--ochre)">Trekker Reviews</p>
+      <h2 class="sec-title" style="color:var(--white);">Straight from the trail</h2>
+    </div>
+    <div class="row g-4">
+
+      <div class="col-md-6 col-lg-4">
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-quote">"The tent they gave us handled a full night of Sandakphu snowfall without a single leak. Absolute quality."</p>
+          <div class="testi-person"><div class="testi-avatar">R</div><div><div class="testi-name">Rohit Ghosh</div><div class="testi-trip">Sandakphu, Nov 2024</div></div></div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-quote">"Rented a -15°C sleeping bag and a 60L backpack. Both were clean, maintained, and performed flawlessly."</p>
+          <div class="testi-person"><div class="testi-avatar">P</div><div><div class="testi-name">Priya Banerjee</div><div class="testi-trip">Dzongri Trek, Feb 2025</div></div></div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <div class="testi-card">
+          <div class="testi-stars">★★★★☆</div>
+          <p class="testi-quote">"Very helpful staff who guided us on what gear we actually needed. Saved us from overpacking!"</p>
+          <div class="testi-person"><div class="testi-avatar">A</div><div><div class="testi-name">Arjun Chakraborty</div><div class="testi-trip">Dooars Camp, Jan 2025</div></div></div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-quote">"Ice axe and crampons were in perfect condition. As a first-time mountaineer I felt totally safe."</p>
+          <div class="testi-person"><div class="testi-avatar">S</div><div><div class="testi-name">Swati Mukherjee</div><div class="testi-trip">Singalila, Dec 2024</div></div></div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-quote">"Best decision to rent instead of buying. Will use TTZ for every future trek without hesitation."</p>
+          <div class="testi-person"><div class="testi-avatar">D</div><div><div class="testi-name">Debashis Sen</div><div class="testi-trip">Phoktey Dara, Mar 2025</div></div></div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-quote">"Quick pickup, easy return, zero hassle. The down jacket was incredibly warm for the altitude."</p>
+          <div class="testi-person"><div class="testi-avatar">M</div><div><div class="testi-name">Meghna Das</div><div class="testi-trip">Goecha La, Oct 2024</div></div></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>-->
+
+<!-- ═══════════════════════════════════
+     CONTACT
+═══════════════════════════════════ -->
+<!-- <section id="contact" class="sec-pad">
+  <div class="container">
+    <div class="row mb-5">
+      <div class="col-lg-6">
+        <p class="sec-label" style="color:var(--olive)">Find Us</p>
+        <h2 class="sec-title" style="color:var(--espresso);margin-bottom:.7rem;">Come visit our store</h2>
+        <div class="divider-line" style="background:var(--orange);"></div>
+        <p style="color:var(--stone);line-height:1.8;">No online orders. Walk in, talk to our team, pick your gear and head out. Open 7 days a week.</p>
+      </div>
+    </div>
+    <div class="row g-5 align-items-start">
+      <div class="col-lg-5">
+        <div class="contact-item">
+          <div class="contact-icon"><i class="bi bi-geo-alt-fill"></i></div>
+          <div><h5>Address</h5><p>12A Rash Behari Avenue,<br/>Ballygunge, Kolkata – 700019<br/>West Bengal, India</p></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon"><i class="bi bi-telephone-fill"></i></div>
+          <div><h5>Phone</h5><a href="tel:+919876543210">+91 98765 43210</a><br/><a href="tel:+919012345678">+91 90123 45678</a></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon"><i class="bi bi-envelope-fill"></i></div>
+          <div><h5>Email</h5><a href="mailto:hello@trektravelzone.com">hello@trektravelzone.com</a></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon"><i class="bi bi-clock-fill"></i></div>
+          <div><h5>Store Hours</h5><p>Mon – Sat: 9:00 AM – 8:00 PM<br/>Sunday: 10:00 AM – 6:00 PM</p></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon"><i class="bi bi-instagram"></i></div>
+          <div><h5>Social</h5><a href="#">@trektravelzone</a><br/><a href="#">facebook.com/trektravelzone</a></div>
+        </div>
+      </div>
+      <div class="col-lg-7">
+        <div class="map-box">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3685.54!2d88.3639!3d22.5200!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a0277172b3b5a1d%3A0xb73b1f3c5a5a5a5a!2sRash%20Behari%20Avenue%2C%20Kolkata!5e0!3m2!1sen!2sin!4v1700000000000"
+                  allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>-->
+
+<!-- ═══════════════════════════════════
+     FOOTER
+═══════════════════════════════════ -->
+<!--<footer>
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-lg-4 col-md-6">
+        <div class="footer-logo">TTZ</div>
+        <div class="footer-tagline">Trek Travel Zone</div>
+        <p class="mt-3" style="max-width:280px;opacity:.65;">Kolkata's trusted camping equipment rental service. Gear up, explore, return. No purchase required.</p>
+        <div class="d-flex gap-3 mt-3">
+          <a href="#" class="social-link"><i class="bi bi-instagram"></i></a>
+          <a href="#" class="social-link"><i class="bi bi-facebook"></i></a>
+          <a href="#" class="social-link"><i class="bi bi-whatsapp"></i></a>
+          <a href="#" class="social-link"><i class="bi bi-youtube"></i></a>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-3 col-6 footer-links">
+        <h6>Navigate</h6>
+        <a href="#home">Home</a><a href="#about">About</a>
+        <a href="#products">Equipment</a><a href="#gallery">Gallery</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="col-lg-2 col-md-3 col-6 footer-links">
+        <h6>Equipment</h6>
+        <a href="#products">Tents</a><a href="#products">Sleeping Bags</a>
+        <a href="#products">Backpacks</a><a href="#products">Jackets</a>
+        <a href="#products">Climbing Gear</a>
+      </div>
+      <div class="col-lg-4 col-md-12 footer-links">
+        <h6>Get In Touch</h6>
+        <a href="tel:+919876543210"><i class="bi bi-telephone me-2"></i>+91 98765 43210</a>
+        <a href="mailto:hello@trektravelzone.com"><i class="bi bi-envelope me-2"></i>hello@trektravelzone.com</a>
+        <a href="#contact"><i class="bi bi-geo-alt me-2"></i>Ballygunge, Kolkata – 700019</a>
+        <a href="#contact"><i class="bi bi-clock me-2"></i>Mon–Sat 9AM–8PM · Sun 10AM–6PM</a>
+      </div>
+    </div>
+    <hr class="footer-hr"/>
+    <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+      <p class="footer-copy mb-0">© 2025 Trek Travel Zone. All rights reserved.</p>
+      <p class="footer-copy mb-0">Made for mountain lovers in Kolkata</p>
+    </div>
+  </div>
+</footer> -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  const navbar = document.querySelector('.navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 60);
+  });
+  const sections = document.querySelectorAll('section[id]');
+  const links = document.querySelectorAll('.nav-link');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 120) current = s.id; });
+    links.forEach(l => {
+      l.classList.remove('active-link');
+      if (l.getAttribute('href') === '#' + current) l.classList.add('active-link');
+    });
+  });
+</script>
+</body>
+</html>
