@@ -4,7 +4,24 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>TTZ – Trek Travel Zone | Camping Equipment Rentals</title>
+
+<!-- FIX 1: Preload hero image FIRST, before any CSS, with type hint -->
+<link rel="preload" as="image" href="a.png" type="image/png" fetchpriority="high">
+
+<!-- FIX 2: Preconnect for Google Fonts to reduce DNS + TLS handshake time -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<!-- Bootstrap CSS — kept synchronous since it's local -->
 <link href="css/bootstrap.min.css" rel="stylesheet"/>
+
+<!-- FIX 3: Google Fonts loaded non-render-blocking via media="print" trick -->
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,700;1,9..144,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap"
+      rel="stylesheet" media="print" onload="this.media='all'">
+<noscript>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,700;1,9..144,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+</noscript>
+
 <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
@@ -25,7 +42,7 @@
   </ul>
 </nav>
 
-<!-- HERO — original SVG blob, terracotta palette -->
+<!-- HERO -->
 <section id="home" style="min-height:100vh;position:relative;display:flex;align-items:center;overflow:hidden;background:var(--linen);">
 
   <svg id="shapes-svg"
@@ -52,9 +69,10 @@
     <path transform="translate(-1418.28,-405.11)" fill="#F7EDD8"
           d="M1515.5,1709.12a436.32,436.32,0,0,1-44-61.17c-16.65-28-41.72-70.12-50-129-9.31-66.23,7.64-117.93,15-139.53,6.82-20,30-85.67,90.43-138.1,18.4-16,44.62-34.51,79.65-59.28,33.12-23.42,43.1-29,58-43.74,16.65-16.49,32.79-37.87,49.91-75.2,29.14-63.54,21.9-91.33,40-142.39,13.71-38.68,38-107.33,101-152,55.85-39.59,126.5-49.23,193-58.3,22.49-3.07,50.35-5.61,92.9-15.18,45.7-10.27,68.55-15.41,93.1-28.78,43.53-23.71,71.85-56.4,92-80.27,18.64-22.08,18.27-26.36,37-46.83,0,0,29-31.73,67.49-58.11,85.25-58.49,190.63-71.37,203.51-72.82,76.16-8.58,133.33,3.57,202,18.16a927.37,927.37,0,0,1,163,50.65V1709.12Z"/>
 
-    <!-- Hero photo -->
+    <!-- FIX 4: fetchpriority added to SVG image element -->
     <image href="a.png" x="0" y="0" width="1581.72" height="1304.51"
-           preserveAspectRatio="xMidYMid slice" clip-path="url(#imgClip)"/>
+           preserveAspectRatio="xMidYMid slice" clip-path="url(#imgClip)"
+           fetchpriority="high"/>
   </svg>
 
   <div class="hero-text">
@@ -196,6 +214,7 @@
   </div>
 </section>
 
+<!-- GALLERY -->
 <section id="gallery" class="sec">
   <div class="container">
     <div class="row align-items-end mb-2">
@@ -217,87 +236,14 @@
     </div>
 
     <div class="gallery-masonry" id="galleryGrid">
-
-      <div class="g-tile" data-cat="himalaya">
-        <div class="g-tile-inner">
-          <div class="g-tile-bg gc-1"></div>
-          <div class="g-tile-overlay">
-            <div class="g-tile-zoom"><i class="bi bi-zoom-in"></i></div>
-            <div class="g-tile-label">Sandakphu Ridge</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="g-tile" data-cat="camp">
-        <div class="g-tile-inner">
-          <div class="g-tile-bg gc-2"></div>
-          <div class="g-tile-overlay">
-            <div class="g-tile-zoom"><i class="bi bi-zoom-in"></i></div>
-            <div class="g-tile-label">Dzongri Basecamp</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="g-tile" data-cat="gear">
-        <div class="g-tile-inner">
-          <div class="g-tile-bg gc-3"></div>
-          <div class="g-tile-overlay">
-            <div class="g-tile-zoom"><i class="bi bi-zoom-in"></i></div>
-            <div class="g-tile-label">Gear Ready to Go</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="g-tile" data-cat="trail">
-        <div class="g-tile-inner">
-          <div class="g-tile-bg gc-4"></div>
-          <div class="g-tile-overlay">
-            <div class="g-tile-zoom"><i class="bi bi-zoom-in"></i></div>
-            <div class="g-tile-label">Singalila Trail</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="g-tile" data-cat="himalaya">
-        <div class="g-tile-inner">
-          <div class="g-tile-bg gc-5"></div>
-          <div class="g-tile-overlay">
-            <div class="g-tile-zoom"><i class="bi bi-zoom-in"></i></div>
-            <div class="g-tile-label">Goecha La Pass</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="g-tile" data-cat="camp">
-        <div class="g-tile-inner">
-          <div class="g-tile-bg gc-6"></div>
-          <div class="g-tile-overlay">
-            <div class="g-tile-zoom"><i class="bi bi-zoom-in"></i></div>
-            <div class="g-tile-label">Dooars Night Camp</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="g-tile" data-cat="gear">
-        <div class="g-tile-inner">
-          <div class="g-tile-bg gc-7"></div>
-          <div class="g-tile-overlay">
-            <div class="g-tile-zoom"><i class="bi bi-zoom-in"></i></div>
-            <div class="g-tile-label">Tent Setup</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="g-tile" data-cat="trail">
-        <div class="g-tile-inner">
-          <div class="g-tile-bg gc-8"></div>
-          <div class="g-tile-overlay">
-            <div class="g-tile-zoom"><i class="bi bi-zoom-in"></i></div>
-            <div class="g-tile-label">Phoktey Dara</div>
-          </div>
-        </div>
-      </div>
-
+      <div class="g-tile" data-cat="himalaya"><div class="g-tile-inner"><div class="g-tile-bg gc-1"></div><div class="g-tile-overlay"><div class="g-tile-zoom"><i class="bi bi-zoom-in"></i></div><div class="g-tile-label">Sandakphu Ridge</div></div></div></div>
+      <div class="g-tile" data-cat="camp"><div class="g-tile-inner"><div class="g-tile-bg gc-2"></div><div class="g-tile-overlay"><div class="g-tile-zoom"><i class="bi bi-zoom-in"></i></div><div class="g-tile-label">Dzongri Basecamp</div></div></div></div>
+      <div class="g-tile" data-cat="gear"><div class="g-tile-inner"><div class="g-tile-bg gc-3"></div><div class="g-tile-overlay"><div class="g-tile-zoom"><i class="bi bi-zoom-in"></i></div><div class="g-tile-label">Gear Ready to Go</div></div></div></div>
+      <div class="g-tile" data-cat="trail"><div class="g-tile-inner"><div class="g-tile-bg gc-4"></div><div class="g-tile-overlay"><div class="g-tile-zoom"><i class="bi bi-zoom-in"></i></div><div class="g-tile-label">Singalila Trail</div></div></div></div>
+      <div class="g-tile" data-cat="himalaya"><div class="g-tile-inner"><div class="g-tile-bg gc-5"></div><div class="g-tile-overlay"><div class="g-tile-zoom"><i class="bi bi-zoom-in"></i></div><div class="g-tile-label">Goecha La Pass</div></div></div></div>
+      <div class="g-tile" data-cat="camp"><div class="g-tile-inner"><div class="g-tile-bg gc-6"></div><div class="g-tile-overlay"><div class="g-tile-zoom"><i class="bi bi-zoom-in"></i></div><div class="g-tile-label">Dooars Night Camp</div></div></div></div>
+      <div class="g-tile" data-cat="gear"><div class="g-tile-inner"><div class="g-tile-bg gc-7"></div><div class="g-tile-overlay"><div class="g-tile-zoom"><i class="bi bi-zoom-in"></i></div><div class="g-tile-label">Tent Setup</div></div></div></div>
+      <div class="g-tile" data-cat="trail"><div class="g-tile-inner"><div class="g-tile-bg gc-8"></div><div class="g-tile-overlay"><div class="g-tile-zoom"><i class="bi bi-zoom-in"></i></div><div class="g-tile-label">Phoktey Dara</div></div></div></div>
     </div>
   </div>
 
@@ -323,81 +269,37 @@
         <p style="color:var(--stone);font-size:.92rem;margin-top:.65rem;line-height:1.75;">Everything you need before your trek — rental forms, pricing sheets, and route guides.</p>
       </div>
     </div>
-
     <div class="doc-grid">
-
       <div class="doc-card doc-type-pdf">
         <div class="doc-icon-wrap"><i class="bi bi-file-earmark-text-fill"></i></div>
-        <div>
-          <div class="doc-title">Rental Agreement Form <span class="doc-badge badge-new">New</span></div>
-          <div class="doc-desc">Standard rental terms and conditions. Fill in and bring to store on pickup day.</div>
-        </div>
-        <div class="doc-meta">
-          <span class="doc-size">PDF · 124 KB</span>
-          <a href="#" class="doc-dl"><i class="bi bi-download"></i> Download</a>
-        </div>
+        <div><div class="doc-title">Rental Agreement Form <span class="doc-badge badge-new">New</span></div><div class="doc-desc">Standard rental terms and conditions. Fill in and bring to store on pickup day.</div></div>
+        <div class="doc-meta"><span class="doc-size">PDF · 124 KB</span><a href="#" class="doc-dl"><i class="bi bi-download"></i> Download</a></div>
       </div>
-
       <div class="doc-card doc-type-info">
         <div class="doc-icon-wrap"><i class="bi bi-currency-rupee"></i></div>
-        <div>
-          <div class="doc-title">Pricing &amp; Rate Card <span class="doc-badge badge-updated">Updated</span></div>
-          <div class="doc-desc">Full gear pricing for daily, weekly and extended rentals — current as of Jan 2025.</div>
-        </div>
-        <div class="doc-meta">
-          <span class="doc-size">PDF · 88 KB</span>
-          <a href="#" class="doc-dl"><i class="bi bi-download"></i> Download</a>
-        </div>
+        <div><div class="doc-title">Pricing &amp; Rate Card <span class="doc-badge badge-updated">Updated</span></div><div class="doc-desc">Full gear pricing for daily, weekly and extended rentals — current as of Jan 2025.</div></div>
+        <div class="doc-meta"><span class="doc-size">PDF · 88 KB</span><a href="#" class="doc-dl"><i class="bi bi-download"></i> Download</a></div>
       </div>
-
       <div class="doc-card doc-type-map">
         <div class="doc-icon-wrap"><i class="bi bi-map-fill"></i></div>
-        <div>
-          <div class="doc-title">Sandakphu Trek Guide</div>
-          <div class="doc-desc">Day-by-day route, altitude chart, gear checklist and emergency contact info.</div>
-        </div>
-        <div class="doc-meta">
-          <span class="doc-size">PDF · 2.1 MB</span>
-          <a href="#" class="doc-dl"><i class="bi bi-download"></i> Download</a>
-        </div>
+        <div><div class="doc-title">Sandakphu Trek Guide</div><div class="doc-desc">Day-by-day route, altitude chart, gear checklist and emergency contact info.</div></div>
+        <div class="doc-meta"><span class="doc-size">PDF · 2.1 MB</span><a href="#" class="doc-dl"><i class="bi bi-download"></i> Download</a></div>
       </div>
-
       <div class="doc-card doc-type-map">
         <div class="doc-icon-wrap"><i class="bi bi-map-fill"></i></div>
-        <div>
-          <div class="doc-title">Dzongri – Goecha La Guide</div>
-          <div class="doc-desc">High-altitude itinerary, acclimatisation tips, and recommended gear list for this route.</div>
-        </div>
-        <div class="doc-meta">
-          <span class="doc-size">PDF · 1.8 MB</span>
-          <a href="#" class="doc-dl"><i class="bi bi-download"></i> Download</a>
-        </div>
+        <div><div class="doc-title">Dzongri – Goecha La Guide</div><div class="doc-desc">High-altitude itinerary, acclimatisation tips, and recommended gear list for this route.</div></div>
+        <div class="doc-meta"><span class="doc-size">PDF · 1.8 MB</span><a href="#" class="doc-dl"><i class="bi bi-download"></i> Download</a></div>
       </div>
-
       <div class="doc-card doc-type-info">
         <div class="doc-icon-wrap"><i class="bi bi-shield-check-fill"></i></div>
-        <div>
-          <div class="doc-title">Gear Care &amp; Return Policy</div>
-          <div class="doc-desc">How we maintain equipment, what to do on return, and damage assessment guidelines.</div>
-        </div>
-        <div class="doc-meta">
-          <span class="doc-size">PDF · 56 KB</span>
-          <a href="#" class="doc-dl"><i class="bi bi-download"></i> Download</a>
-        </div>
+        <div><div class="doc-title">Gear Care &amp; Return Policy</div><div class="doc-desc">How we maintain equipment, what to do on return, and damage assessment guidelines.</div></div>
+        <div class="doc-meta"><span class="doc-size">PDF · 56 KB</span><a href="#" class="doc-dl"><i class="bi bi-download"></i> Download</a></div>
       </div>
-
       <div class="doc-card doc-type-pdf">
         <div class="doc-icon-wrap"><i class="bi bi-list-check"></i></div>
-        <div>
-          <div class="doc-title">Complete Gear Checklist <span class="doc-badge badge-new">New</span></div>
-          <div class="doc-desc">Printable packing checklist for Himalayan treks — summer and winter editions.</div>
-        </div>
-        <div class="doc-meta">
-          <span class="doc-size">PDF · 72 KB</span>
-          <a href="#" class="doc-dl"><i class="bi bi-download"></i> Download</a>
-        </div>
+        <div><div class="doc-title">Complete Gear Checklist <span class="doc-badge badge-new">New</span></div><div class="doc-desc">Printable packing checklist for Himalayan treks — summer and winter editions.</div></div>
+        <div class="doc-meta"><span class="doc-size">PDF · 72 KB</span><a href="#" class="doc-dl"><i class="bi bi-download"></i> Download</a></div>
       </div>
-
     </div>
   </div>
 </section>
@@ -461,57 +363,62 @@
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Bootstrap JS deferred so it never blocks rendering -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
+
 <script>
 // Gallery filter
-const filterBtns=document.querySelectorAll('.gf-btn');
-const tiles=document.querySelectorAll('.g-tile');
-filterBtns.forEach(btn=>{
-  btn.addEventListener('click',()=>{
-    filterBtns.forEach(b=>b.classList.remove('active'));
+const filterBtns = document.querySelectorAll('.gf-btn');
+const tiles = document.querySelectorAll('.g-tile');
+filterBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    filterBtns.forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
-    const f=btn.dataset.filter;
-    tiles.forEach(t=>{
-      t.style.display=(f==='all'||t.dataset.cat===f)?'':'none';
+    const f = btn.dataset.filter;
+    tiles.forEach(t => {
+      t.style.display = (f === 'all' || t.dataset.cat === f) ? '' : 'none';
     });
   });
 });
 
 // Lightbox
-const lb=document.getElementById('lightbox');
-const lbImg=document.getElementById('lbImg');
-const lbCaption=document.getElementById('lbCaption');
-const lbClose=document.getElementById('lbClose');
-const lbPrev=document.getElementById('lbPrev');
-const lbNext=document.getElementById('lbNext');
-let activeTiles=[],lbIdx=0;
+const lb = document.getElementById('lightbox');
+const lbImg = document.getElementById('lbImg');
+const lbCaption = document.getElementById('lbCaption');
+const lbClose = document.getElementById('lbClose');
+const lbPrev = document.getElementById('lbPrev');
+const lbNext = document.getElementById('lbNext');
+let activeTiles = [], lbIdx = 0;
 
-function openLb(idx){
-  lbIdx=idx;
-  activeTiles=Array.from(document.querySelectorAll('.g-tile:not([style*="display: none"])'));
-  const tile=activeTiles[lbIdx];
-  const bg=tile.querySelector('.g-tile-bg');
-  const label=tile.querySelector('.g-tile-label').textContent;
-  const style=window.getComputedStyle(bg).background;
-  lbImg.style.background=style;
-  lbCaption.textContent=label;
+function openLb(idx) {
+  lbIdx = idx;
+  activeTiles = Array.from(document.querySelectorAll('.g-tile:not([style*="display: none"])'));
+  const tile = activeTiles[lbIdx];
+  const bg = tile.querySelector('.g-tile-bg');
+  const label = tile.querySelector('.g-tile-label').textContent;
+  const style = window.getComputedStyle(bg).background;
+  lbImg.style.background = style;
+  lbCaption.textContent = label;
   lb.classList.add('open');
 }
-tiles.forEach((t,i)=>{
-  t.addEventListener('click',()=>{
-    activeTiles=Array.from(document.querySelectorAll('.g-tile:not([style*="display: none"])'));
-    const idx=activeTiles.indexOf(t);
+tiles.forEach(t => {
+  t.addEventListener('click', () => {
+    activeTiles = Array.from(document.querySelectorAll('.g-tile:not([style*="display: none"])'));
+    const idx = activeTiles.indexOf(t);
     openLb(idx);
   });
 });
-lbClose.addEventListener('click',()=>lb.classList.remove('open'));
-lb.addEventListener('click',e=>{if(e.target===lb)lb.classList.remove('open');});
-lbPrev.addEventListener('click',()=>{lbIdx=(lbIdx-1+activeTiles.length)%activeTiles.length;openLb(lbIdx);});
-lbNext.addEventListener('click',()=>{lbIdx=(lbIdx+1)%activeTiles.length;openLb(lbIdx);});
-document.addEventListener('keydown',e=>{
-  if(!lb.classList.contains('open'))return;
-  if(e.key==='Escape')lb.classList.remove('open');
-  if(e.key==='ArrowLeft'){lbIdx=(lbIdx-1+activeTiles.length)%activeTiles.length;openLb(lbIdx);}
-  if(e.key==='ArrowRight'){lbIdx=(lbIdx+1)%activeTiles.length;openLb(lbIdx);}
+lbClose.addEventListener('click', () => lb.classList.remove('open'));
+lb.addEventListener('click', e => { if (e.target === lb) lb.classList.remove('open'); });
+lbPrev.addEventListener('click', () => { lbIdx = (lbIdx - 1 + activeTiles.length) % activeTiles.length; openLb(lbIdx); });
+lbNext.addEventListener('click', () => { lbIdx = (lbIdx + 1) % activeTiles.length; openLb(lbIdx); });
+document.addEventListener('keydown', e => {
+  if (!lb.classList.contains('open')) return;
+  if (e.key === 'Escape') lb.classList.remove('open');
+  if (e.key === 'ArrowLeft')  { lbIdx = (lbIdx - 1 + activeTiles.length) % activeTiles.length; openLb(lbIdx); }
+  if (e.key === 'ArrowRight') { lbIdx = (lbIdx + 1) % activeTiles.length; openLb(lbIdx); }
 });
-window.addEventListene
+</script>
+
+</body>
+</html>
