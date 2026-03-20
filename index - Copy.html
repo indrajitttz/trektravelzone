@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>TTZ – Trek Travel Zone | Camping Equipment Rentals</title>
+
+<!-- FIX 1: Preload hero image FIRST, before any CSS, with type hint -->
+<link rel="preload" as="image" href="a.png" type="image/png" fetchpriority="high">
+
+<!-- FIX 2: Preconnect for Google Fonts to reduce DNS + TLS handshake time -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<!-- Bootstrap CSS — kept synchronous since it's local -->
+<link href="css/bootstrap.min.css" rel="stylesheet"/>
+
+<!-- FIX 3: Google Fonts loaded non-render-blocking via media="print" trick -->
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,700;1,9..144,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap"
+      rel="stylesheet" media="print" onload="this.media='all'">
+<noscript>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,700;1,9..144,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+</noscript>
+
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="ttznav" id="mainNav">
+  <a href="#home" class="nav-brand">
+    <div class="bname"><span>Trek</span>TravelZone</div>
+    <div class="btag">Explore Beyond Boundaries</div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#home" class="active">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#products">Equipment</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#documents">Documents</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="home" style="min-height:100vh;position:relative;display:flex;align-items:center;overflow:hidden;background:var(--linen);">
+
+  <svg id="shapes-svg"
+       xmlns="http://www.w3.org/2000/svg"
+       xmlns:xlink="http://www.w3.org/1999/xlink"
+       style="position:absolute;top:80px;right:0;width:68%;height:calc(100% - 80px + 30px);overflow:visible;z-index:1;"
+       viewBox="0 0 1581.72 1304.51"
+       preserveAspectRatio="xMaxYMax meet">
+    <defs>
+      <clipPath id="imgClip">
+        <path transform="translate(-1418.28,-405.11)"
+              d="M1515.5,1709.12a436.32,436.32,0,0,1-44-61.17c-16.65-28-41.72-70.12-50-129-9.31-66.23,7.64-117.93,15-139.53,6.82-20,30-85.67,90.43-138.1,18.4-16,44.62-34.51,79.65-59.28,33.12-23.42,43.1-29,58-43.74,16.65-16.49,32.79-37.87,49.91-75.2,29.14-63.54,21.9-91.33,40-142.39,13.71-38.68,38-107.33,101-152,55.85-39.59,126.5-49.23,193-58.3,22.49-3.07,50.35-5.61,92.9-15.18,45.7-10.27,68.55-15.41,93.1-28.78,43.53-23.71,71.85-56.4,92-80.27,18.64-22.08,18.27-26.36,37-46.83,0,0,29-31.73,67.49-58.11,85.25-58.49,190.63-71.37,203.51-72.82,76.16-8.58,133.33,3.57,202,18.16a927.37,927.37,0,0,1,163,50.65V1709.12Z"/>
+      </clipPath>
+    </defs>
+
+    <!-- Outer halo — warm sand ring -->
+    <g transform="translate(900,700) scale(1.026) translate(-900,-700)">
+      <path transform="translate(-1418.28,-405.11) translate(-32,-18)"
+            fill="#E8C9A8"
+            d="M1515.5,1709.12a436.32,436.32,0,0,1-44-61.17c-16.65-28-41.72-70.12-50-129-9.31-66.23,7.64-117.93,15-139.53,6.82-20,30-85.67,90.43-138.1,18.4-16,44.62-34.51,79.65-59.28,33.12-23.42,43.1-29,58-43.74,16.65-16.49,32.79-37.87,49.91-75.2,29.14-63.54,21.9-91.33,40-142.39,13.71-38.68,38-107.33,101-152,55.85-39.59,126.5-49.23,193-58.3,22.49-3.07,50.35-5.61,92.9-15.18,45.7-10.27,68.55-15.41,93.1-28.78,43.53-23.71,71.85-56.4,92-80.27,18.64-22.08,18.27-26.36,37-46.83,0,0,29-31.73,67.49-58.11,85.25-58.49,190.63-71.37,203.51-72.82,76.16-8.58,133.33,3.57,202,18.16a927.37,927.37,0,0,1,163,50.65V1709.12Z"/>
+    </g>
+
+    <!-- Inner bg — pale linen -->
+    <path transform="translate(-1418.28,-405.11)" fill="#F7EDD8"
+          d="M1515.5,1709.12a436.32,436.32,0,0,1-44-61.17c-16.65-28-41.72-70.12-50-129-9.31-66.23,7.64-117.93,15-139.53,6.82-20,30-85.67,90.43-138.1,18.4-16,44.62-34.51,79.65-59.28,33.12-23.42,43.1-29,58-43.74,16.65-16.49,32.79-37.87,49.91-75.2,29.14-63.54,21.9-91.33,40-142.39,13.71-38.68,38-107.33,101-152,55.85-39.59,126.5-49.23,193-58.3,22.49-3.07,50.35-5.61,92.9-15.18,45.7-10.27,68.55-15.41,93.1-28.78,43.53-23.71,71.85-56.4,92-80.27,18.64-22.08,18.27-26.36,37-46.83,0,0,29-31.73,67.49-58.11,85.25-58.49,190.63-71.37,203.51-72.82,76.16-8.58,133.33,3.57,202,18.16a927.37,927.37,0,0,1,163,50.65V1709.12Z"/>
+
+    <!-- FIX 4: fetchpriority added to SVG image element -->
+    <image href="a.png" x="0" y="0" width="1581.72" height="1304.51"
+           preserveAspectRatio="xMidYMid slice" clip-path="url(#imgClip)"
+           fetchpriority="high"/>
+  </svg>
+
+  <div class="hero-text">
+    <p class="eyebrow">Gear Up For The Wild</p>
+    <h1>Rent. Trek.<br/><em>Conquer.</em></h1>
+    <p>TTZ brings premium camping gear to every adventurer — no purchase needed. Pick up your kit, hit the trail, return when done.</p>
+    <div class="hero-pills">
+      <span class="pill"><i class="bi bi-house-door"></i> Tents &amp; Shelters</span>
+      <span class="pill"><i class="bi bi-briefcase"></i> Backpacks</span>
+      <span class="pill"><i class="bi bi-snow2"></i> Cold Gear</span>
+      <span class="pill"><i class="bi bi-lightning-charge"></i> Climbing Tools</span>
+    </div>
+    <div class="d-flex flex-wrap gap-3">
+      <a href="#products" class="btn-fill">Browse Equipment</a>
+      <a href="#how" class="btn-ghost">How It Works</a>
+    </div>
+  </div>
+
+  <div class="scroll-hint"><span class="line"></span> Scroll to explore</div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how" class="sec">
+  <div class="container">
+    <div class="text-center mb-5">
+      <div class="sec-eyebrow justify-content-center" style="color:var(--clay);">Simple Process</div>
+      <h2 class="sec-h" style="color:var(--ink);">Gear in 4 easy steps</h2>
+    </div>
+    <div class="step-row">
+      <div class="step"><div class="step-line"></div><div class="step-n">01</div><h4>Browse Equipment</h4><p>Check our full gear list online or call us to confirm availability for your trek dates.</p></div>
+      <div class="step"><div class="step-line"></div><div class="step-n">02</div><h4>Visit Our Store</h4><p>Walk into our Kolkata store. Our team helps you pick the right gear for your route and season.</p></div>
+      <div class="step"><div class="step-line"></div><div class="step-n">03</div><h4>Gear Up &amp; Go</h4><p>Collect your kit, get a quick rundown from our team and head to the mountains fully equipped.</p></div>
+      <div class="step"><div class="step-n">04</div><h4>Return &amp; Repeat</h4><p>Come back after your adventure, return the gear — and start planning your next one!</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="sec">
+  <div class="container">
+    <div class="row g-5 align-items-center">
+      <div class="col-lg-5">
+        <div class="about-img-box">
+          <i class="bi bi-image ph"></i>
+          <div class="about-stamp">Est. 2018 · Howrah</div>
+        </div>
+      </div>
+      <div class="col-lg-7">
+        <div class="sec-eyebrow" style="color:var(--terra);">Who We Are</div>
+        <h2 class="sec-h" style="color:var(--ink);margin-bottom:.8rem;">Your local outfitter<br/>for every expedition</h2>
+        <div class="divbar" style="background:var(--terra);"></div>
+        <p style="color:var(--stone);line-height:1.85;margin-bottom:1rem;">Trek Travel Zone started with a simple belief — great gear shouldn't require a great purchase. We're a Howrah-based equipment rental service for trekkers, campers, and mountain lovers who want quality without commitment.</p>
+        <p style="color:var(--stone);line-height:1.85;margin-bottom:2rem;">Whether you're heading to Sandakphu, Dzongri, or a weekend camp in the Dooars — our curated, well-maintained gear is ready for pickup at our Shalimar store. Just visit, collect, and go.</p>
+        <div class="about-stats">
+          <div class="astat"><div class="n">500+</div><div class="l">Happy Trekkers</div></div>
+          <div class="vd"></div>
+          <div class="astat"><div class="n">6yr</div><div class="l">In Business</div></div>
+          <div class="vd"></div>
+          <div class="astat"><div class="n">20+</div><div class="l">Gear Types</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section id="products" class="sec">
+  <div class="container">
+    <div class="row mb-5">
+      <div class="col-lg-6">
+        <div class="sec-eyebrow" style="color:var(--clay);">What We Rent</div>
+        <h2 class="sec-h" style="color:var(--ink);">Full kit. Zero hassle.</h2>
+        <p style="color:var(--stone);font-size:.95rem;margin-top:.7rem;line-height:1.75;">Premium equipment maintained to trail-ready standards — available for short and extended rental periods.</p>
+      </div>
+    </div>
+    <div class="row g-4">
+
+      <div class="col-md-6 col-lg-4">
+        <div class="pcard">
+          <div class="pcard-img"><div class="pcard-bg bg-tents"></div><div class="bg-icon"><i class="bi bi-house-door"></i></div><span class="pcard-cat">Shelter</span><div class="pcard-ico"><i class="bi bi-house-door"></i></div></div>
+          <div class="pcard-body"><h4>Camping Tents</h4><p>3-season and 4-season dome tents, tunnel tents and ultralight backpacking shelters for solo to group camps.</p><div class="tags"><span class="tag">2-person</span><span class="tag">4-person</span><span class="tag">Ultralight</span><span class="tag">4-season</span></div></div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <div class="pcard">
+          <div class="pcard-img"><div class="pcard-bg bg-sleeping"></div><div class="bg-icon"><i class="bi bi-bag-heart"></i></div><span class="pcard-cat">Rest</span><div class="pcard-ico"><i class="bi bi-bag-heart"></i></div></div>
+          <div class="pcard-body"><h4>Sleeping Bags</h4><p>Mummy-style and rectangular sleeping bags rated from +5°C to -20°C, suitable for all Himalayan conditions.</p><div class="tags"><span class="tag">Summer</span><span class="tag">Winter</span><span class="tag">Down Fill</span><span class="tag">Synthetic</span></div></div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <div class="pcard">
+          <div class="pcard-img"><div class="pcard-bg bg-packs"></div><div class="bg-icon"><i class="bi bi-briefcase"></i></div><span class="pcard-cat">Carry</span><div class="pcard-ico"><i class="bi bi-briefcase"></i></div></div>
+          <div class="pcard-body"><h4>Backpacks</h4><p>Frame and frameless packs from 30L day packs to 70L expedition carriers with adjustable torso fit.</p><div class="tags"><span class="tag">30L</span><span class="tag">50L</span><span class="tag">70L</span><span class="tag">Waterproof</span></div></div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <div class="pcard">
+          <div class="pcard-img"><div class="pcard-bg bg-jackets"></div><div class="bg-icon"><i class="bi bi-snow3"></i></div><span class="pcard-cat">Warmth</span><div class="pcard-ico"><i class="bi bi-snow3"></i></div></div>
+          <div class="pcard-body"><h4>Jackets &amp; Thermals</h4><p>Down jackets, hardshell waterproofs, fleece mid-layers and base thermal sets for cold altitude conditions.</p><div class="tags"><span class="tag">Down Jacket</span><span class="tag">Hardshell</span><span class="tag">Fleece</span><span class="tag">Thermal</span></div></div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <div class="pcard">
+          <div class="pcard-img"><div class="pcard-bg bg-climbing"></div><div class="bg-icon"><i class="bi bi-lightning-charge"></i></div><span class="pcard-cat" style="background:var(--ochre);">Technical</span><div class="pcard-ico"><i class="bi bi-lightning-charge"></i></div></div>
+          <div class="pcard-body"><h4>Climbing Gear</h4><p>Ice axes, crampons, harnesses, helmets, carabiners and belay devices for technical mountain terrain.</p><div class="tags"><span class="tag">Ice Axe</span><span class="tag">Crampons</span><span class="tag">Harness</span><span class="tag">Helmet</span></div></div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <div class="pcard">
+          <div class="pcard-img"><div class="pcard-bg bg-access"></div><div class="bg-icon"><i class="bi bi-tools"></i></div><span class="pcard-cat">Essentials</span><div class="pcard-ico"><i class="bi bi-tools"></i></div></div>
+          <div class="pcard-body"><h4>Accessories &amp; More</h4><p>Trekking poles, headlamps, sleeping mats, gaiters, buff neck warmers and water filtration systems.</p><div class="tags"><span class="tag">Poles</span><span class="tag">Headlamp</span><span class="tag">Sleep Mat</span><span class="tag">Gaiters</span></div></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials" class="sec">
+  <div class="container">
+    <div class="text-center mb-5">
+      <div class="sec-eyebrow justify-content-center" style="color:var(--clay);">Trekker Reviews</div>
+      <h2 class="sec-h" style="color:var(--ink);">Straight from the trail</h2>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-4"><div class="tcard"><div class="tcard-stars">★★★★★</div><p class="tcard-q">The tent handled a full night of Sandakphu snowfall without a single leak. Absolute quality.</p><div class="tcard-person"><div class="tcard-av">R</div><div><div class="tcard-name">Rohit Ghosh</div><div class="tcard-trip">Sandakphu, Nov 2024</div></div></div></div></div>
+      <div class="col-md-6 col-lg-4"><div class="tcard"><div class="tcard-stars">★★★★★</div><p class="tcard-q">Rented a -15°C sleeping bag and a 60L backpack. Both were clean, maintained, and performed flawlessly.</p><div class="tcard-person"><div class="tcard-av">P</div><div><div class="tcard-name">Priya Banerjee</div><div class="tcard-trip">Dzongri Trek, Feb 2025</div></div></div></div></div>
+      <div class="col-md-6 col-lg-4"><div class="tcard"><div class="tcard-stars">★★★★☆</div><p class="tcard-q">Very helpful staff who guided us on what gear we actually needed. Saved us from overpacking!</p><div class="tcard-person"><div class="tcard-av">A</div><div><div class="tcard-name">Arjun Chakraborty</div><div class="tcard-trip">Dooars Camp, Jan 2025</div></div></div></div></div>
+      <div class="col-md-6 col-lg-4"><div class="tcard"><div class="tcard-stars">★★★★★</div><p class="tcard-q">Ice axe and crampons were in perfect condition. As a first-time mountaineer I felt totally safe.</p><div class="tcard-person"><div class="tcard-av">S</div><div><div class="tcard-name">Swati Mukherjee</div><div class="tcard-trip">Singalila, Dec 2024</div></div></div></div></div>
+      <div class="col-md-6 col-lg-4"><div class="tcard"><div class="tcard-stars">★★★★★</div><p class="tcard-q">Best decision to rent instead of buying. Will use TTZ for every future trek without hesitation.</p><div class="tcard-person"><div class="tcard-av">D</div><div><div class="tcard-name">Debashis Sen</div><div class="tcard-trip">Phoktey Dara, Mar 2025</div></div></div></div></div>
+      <div class="col-md-6 col-lg-4"><div class="tcard"><div class="tcard-stars">★★★★★</div><p class="tcard-q">Quick pickup, easy return, zero hassle. The down jacket was incredibly warm for the altitude.</p><div class="tcard-person"><div class="tcard-av">M</div><div><div class="tcard-name">Meghna Das</div><div class="tcard-trip">Goecha La, Oct 2024</div></div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery" class="sec">
+  <div class="container">
+    <div class="row align-items-end mb-2">
+      <div class="col-lg-7">
+        <div class="sec-eyebrow" style="color:var(--clay);">In The Field</div>
+        <h2 class="sec-h" style="color:var(--ink);">Our gear, your adventures</h2>
+      </div>
+      <div class="col-lg-5 text-lg-end mt-3 mt-lg-0">
+        <p style="font-size:.84rem;color:var(--stone);">Photos shared by our trekking community.</p>
+      </div>
+    </div>
+
+    <div class="gallery-filter">
+      <button class="gf-btn active" data-filter="all">All</button>
+      <button class="gf-btn" data-filter="himalaya">Himalaya</button>
+      <button class="gf-btn" data-filter="camp">Camp Life</button>
+      <button class="gf-btn" data-filter="gear">Gear</button>
+      <button class="gf-btn" data-filter="trail">Trail</button>
+    </div>
+
+    <div class="gallery-masonry" id="galleryGrid">
+      <div class="g-tile" data-cat="himalaya"><div class="g-tile-inner"><div class="g-tile-bg gc-1"></div><div class="g-tile-overlay"><div class="g-tile-zoom"><i class="bi bi-zoom-in"></i></div><div class="g-tile-label">Sandakphu Ridge</div></div></div></div>
+      <div class="g-tile" data-cat="camp"><div class="g-tile-inner"><div class="g-tile-bg gc-2"></div><div class="g-tile-overlay"><div class="g-tile-zoom"><i class="bi bi-zoom-in"></i></div><div class="g-tile-label">Dzongri Basecamp</div></div></div></div>
+      <div class="g-tile" data-cat="gear"><div class="g-tile-inner"><div class="g-tile-bg gc-3"></div><div class="g-tile-overlay"><div class="g-tile-zoom"><i class="bi bi-zoom-in"></i></div><div class="g-tile-label">Gear Ready to Go</div></div></div></div>
+      <div class="g-tile" data-cat="trail"><div class="g-tile-inner"><div class="g-tile-bg gc-4"></div><div class="g-tile-overlay"><div class="g-tile-zoom"><i class="bi bi-zoom-in"></i></div><div class="g-tile-label">Singalila Trail</div></div></div></div>
+      <div class="g-tile" data-cat="himalaya"><div class="g-tile-inner"><div class="g-tile-bg gc-5"></div><div class="g-tile-overlay"><div class="g-tile-zoom"><i class="bi bi-zoom-in"></i></div><div class="g-tile-label">Goecha La Pass</div></div></div></div>
+      <div class="g-tile" data-cat="camp"><div class="g-tile-inner"><div class="g-tile-bg gc-6"></div><div class="g-tile-overlay"><div class="g-tile-zoom"><i class="bi bi-zoom-in"></i></div><div class="g-tile-label">Dooars Night Camp</div></div></div></div>
+      <div class="g-tile" data-cat="gear"><div class="g-tile-inner"><div class="g-tile-bg gc-7"></div><div class="g-tile-overlay"><div class="g-tile-zoom"><i class="bi bi-zoom-in"></i></div><div class="g-tile-label">Tent Setup</div></div></div></div>
+      <div class="g-tile" data-cat="trail"><div class="g-tile-inner"><div class="g-tile-bg gc-8"></div><div class="g-tile-overlay"><div class="g-tile-zoom"><i class="bi bi-zoom-in"></i></div><div class="g-tile-label">Phoktey Dara</div></div></div></div>
+    </div>
+  </div>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <div class="lb-inner">
+      <div class="lb-img" id="lbImg"></div>
+      <div class="lb-caption" id="lbCaption"></div>
+      <div class="lb-close" id="lbClose"><i class="bi bi-x-lg"></i></div>
+      <div class="lb-nav lb-prev" id="lbPrev"><i class="bi bi-chevron-left"></i></div>
+      <div class="lb-nav lb-next" id="lbNext"><i class="bi bi-chevron-right"></i></div>
+    </div>
+  </div>
+</section>
+
+<!-- DOCUMENTS -->
+<section id="documents" class="sec">
+  <div class="container">
+    <div class="row mb-1">
+      <div class="col-lg-7">
+        <div class="sec-eyebrow" style="color:var(--clay);">Resources</div>
+        <h2 class="sec-h" style="color:var(--ink);">Guides &amp; Documents</h2>
+        <p style="color:var(--stone);font-size:.92rem;margin-top:.65rem;line-height:1.75;">Everything you need before your trek — rental forms, pricing sheets, and route guides.</p>
+      </div>
+    </div>
+    <div class="doc-grid">
+      <div class="doc-card doc-type-pdf">
+        <div class="doc-icon-wrap"><i class="bi bi-file-earmark-text-fill"></i></div>
+        <div><div class="doc-title">Rental Agreement Form <span class="doc-badge badge-new">New</span></div><div class="doc-desc">Standard rental terms and conditions. Fill in and bring to store on pickup day.</div></div>
+        <div class="doc-meta"><span class="doc-size">PDF · 124 KB</span><a href="#" class="doc-dl"><i class="bi bi-download"></i> Download</a></div>
+      </div>
+      <div class="doc-card doc-type-info">
+        <div class="doc-icon-wrap"><i class="bi bi-currency-rupee"></i></div>
+        <div><div class="doc-title">Pricing &amp; Rate Card <span class="doc-badge badge-updated">Updated</span></div><div class="doc-desc">Full gear pricing for daily, weekly and extended rentals — current as of Jan 2025.</div></div>
+        <div class="doc-meta"><span class="doc-size">PDF · 88 KB</span><a href="#" class="doc-dl"><i class="bi bi-download"></i> Download</a></div>
+      </div>
+      <div class="doc-card doc-type-map">
+        <div class="doc-icon-wrap"><i class="bi bi-map-fill"></i></div>
+        <div><div class="doc-title">Sandakphu Trek Guide</div><div class="doc-desc">Day-by-day route, altitude chart, gear checklist and emergency contact info.</div></div>
+        <div class="doc-meta"><span class="doc-size">PDF · 2.1 MB</span><a href="#" class="doc-dl"><i class="bi bi-download"></i> Download</a></div>
+      </div>
+      <div class="doc-card doc-type-map">
+        <div class="doc-icon-wrap"><i class="bi bi-map-fill"></i></div>
+        <div><div class="doc-title">Dzongri – Goecha La Guide</div><div class="doc-desc">High-altitude itinerary, acclimatisation tips, and recommended gear list for this route.</div></div>
+        <div class="doc-meta"><span class="doc-size">PDF · 1.8 MB</span><a href="#" class="doc-dl"><i class="bi bi-download"></i> Download</a></div>
+      </div>
+      <div class="doc-card doc-type-info">
+        <div class="doc-icon-wrap"><i class="bi bi-shield-check-fill"></i></div>
+        <div><div class="doc-title">Gear Care &amp; Return Policy</div><div class="doc-desc">How we maintain equipment, what to do on return, and damage assessment guidelines.</div></div>
+        <div class="doc-meta"><span class="doc-size">PDF · 56 KB</span><a href="#" class="doc-dl"><i class="bi bi-download"></i> Download</a></div>
+      </div>
+      <div class="doc-card doc-type-pdf">
+        <div class="doc-icon-wrap"><i class="bi bi-list-check"></i></div>
+        <div><div class="doc-title">Complete Gear Checklist <span class="doc-badge badge-new">New</span></div><div class="doc-desc">Printable packing checklist for Himalayan treks — summer and winter editions.</div></div>
+        <div class="doc-meta"><span class="doc-size">PDF · 72 KB</span><a href="#" class="doc-dl"><i class="bi bi-download"></i> Download</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="sec">
+  <div class="container">
+    <div class="row mb-5">
+      <div class="col-lg-6">
+        <div class="sec-eyebrow" style="color:var(--clay);">Find Us</div>
+        <h2 class="sec-h" style="color:var(--ink);margin-bottom:.7rem;">Come visit our store</h2>
+        <div class="divbar" style="background:var(--terra);"></div>
+        <p style="color:var(--stone);line-height:1.8;">No online orders. Walk in, talk to our team, pick your gear and head out. Open 7 days a week.</p>
+      </div>
+    </div>
+    <div class="row g-5 align-items-start">
+      <div class="col-lg-5">
+        <div class="citem"><div class="cico"><i class="bi bi-geo-alt-fill"></i></div><div><h5>Address</h5><p>367, Sarat Chatterjee Rd,<br/>Kazipada, Shalimar, Howrah – 711103<br/>West Bengal, India</p></div></div>
+        <div class="citem"><div class="cico"><i class="bi bi-telephone-fill"></i></div><div><h5>Phone</h5><a href="tel:+919830012345">+91 98300 12345</a></div></div>
+        <div class="citem"><div class="cico"><i class="bi bi-envelope-fill"></i></div><div><h5>Email</h5><a href="mailto:indrajitttz1964@gmail.com">indrajitttz1964@gmail.com</a></div></div>
+        <div class="citem"><div class="cico"><i class="bi bi-clock-fill"></i></div><div><h5>Store Hours</h5><p>Mon – Sat: 9:00 AM – 8:00 PM<br/>Sunday: 10:00 AM – 6:00 PM</p></div></div>
+        <div class="citem"><div class="cico"><i class="bi bi-instagram"></i></div><div><h5>Social</h5><a href="#">@trektravelzone</a><br/><a href="#">facebook.com/trektravelzone</a></div></div>
+      </div>
+      <div class="col-lg-7">
+        <div class="mapbox"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3684.410761764501!2d88.3150957!3d22.563735400000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a02782d4c3f01d1%3A0xffc36fe1c08a8ce!2sT%20T%20Z!5e0!3m2!1sen!2sin!4v1773945304157!5m2!1sen!2sin" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-lg-4 col-md-6">
+        <div class="flogo">TTZ</div>
+        <div class="ftag">Trek Travel Zone</div>
+        <p class="mt-3" style="max-width:280px;opacity:.5;">Howrah's trusted camping equipment rental service. Gear up, explore, return. No purchase required.</p>
+        <div class="d-flex gap-3 mt-3">
+          <a href="#" class="slink"><i class="bi bi-instagram"></i></a>
+          <a href="#" class="slink"><i class="bi bi-facebook"></i></a>
+          <a href="#" class="slink"><i class="bi bi-whatsapp"></i></a>
+          <a href="#" class="slink"><i class="bi bi-youtube"></i></a>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-3 col-6 fl"><h6>Navigate</h6><a href="#home">Home</a><a href="#about">About</a><a href="#products">Equipment</a><a href="#gallery">Gallery</a><a href="#documents">Documents</a><a href="#testimonials">Reviews</a><a href="#contact">Contact</a></div>
+      <div class="col-lg-2 col-md-3 col-6 fl"><h6>Equipment</h6><a href="#products">Tents</a><a href="#products">Sleeping Bags</a><a href="#products">Backpacks</a><a href="#products">Jackets</a><a href="#products">Climbing Gear</a></div>
+      <div class="col-lg-4 col-md-12 fl">
+        <h6>Get In Touch</h6>
+        <a href="tel:+919830012345"><i class="bi bi-telephone me-2"></i>+91 98300 12345</a>
+        <a href="mailto:indrajitttz1964@gmail.com"><i class="bi bi-envelope me-2"></i>indrajitttz1964@gmail.com</a>
+        <a href="#contact"><i class="bi bi-geo-alt me-2"></i>Shalimar, Howrah – 711103</a>
+        <a href="#contact"><i class="bi bi-clock me-2"></i>Mon–Sat 9AM–8PM · Sun 10AM–6PM</a>
+      </div>
+    </div>
+    <hr class="fhr"/>
+    <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+      <p class="fcopy mb-0">© 2025 Trek Travel Zone. All rights reserved.</p>
+      <p class="fcopy mb-0">Made for mountain lovers in Howrah &amp; beyond</p>
+    </div>
+  </div>
+</footer>
+
+<!-- Bootstrap JS deferred so it never blocks rendering -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
+
+<script>
+// Gallery filter
+const filterBtns = document.querySelectorAll('.gf-btn');
+const tiles = document.querySelectorAll('.g-tile');
+filterBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    filterBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const f = btn.dataset.filter;
+    tiles.forEach(t => {
+      t.style.display = (f === 'all' || t.dataset.cat === f) ? '' : 'none';
+    });
+  });
+});
+
+// Lightbox
+const lb = document.getElementById('lightbox');
+const lbImg = document.getElementById('lbImg');
+const lbCaption = document.getElementById('lbCaption');
+const lbClose = document.getElementById('lbClose');
+const lbPrev = document.getElementById('lbPrev');
+const lbNext = document.getElementById('lbNext');
+let activeTiles = [], lbIdx = 0;
+
+function openLb(idx) {
+  lbIdx = idx;
+  activeTiles = Array.from(document.querySelectorAll('.g-tile:not([style*="display: none"])'));
+  const tile = activeTiles[lbIdx];
+  const bg = tile.querySelector('.g-tile-bg');
+  const label = tile.querySelector('.g-tile-label').textContent;
+  const style = window.getComputedStyle(bg).background;
+  lbImg.style.background = style;
+  lbCaption.textContent = label;
+  lb.classList.add('open');
+}
+tiles.forEach(t => {
+  t.addEventListener('click', () => {
+    activeTiles = Array.from(document.querySelectorAll('.g-tile:not([style*="display: none"])'));
+    const idx = activeTiles.indexOf(t);
+    openLb(idx);
+  });
+});
+lbClose.addEventListener('click', () => lb.classList.remove('open'));
+lb.addEventListener('click', e => { if (e.target === lb) lb.classList.remove('open'); });
+lbPrev.addEventListener('click', () => { lbIdx = (lbIdx - 1 + activeTiles.length) % activeTiles.length; openLb(lbIdx); });
+lbNext.addEventListener('click', () => { lbIdx = (lbIdx + 1) % activeTiles.length; openLb(lbIdx); });
+document.addEventListener('keydown', e => {
+  if (!lb.classList.contains('open')) return;
+  if (e.key === 'Escape') lb.classList.remove('open');
+  if (e.key === 'ArrowLeft')  { lbIdx = (lbIdx - 1 + activeTiles.length) % activeTiles.length; openLb(lbIdx); }
+  if (e.key === 'ArrowRight') { lbIdx = (lbIdx + 1) % activeTiles.length; openLb(lbIdx); }
+});
+</script>
+
+</body>
+</html>
